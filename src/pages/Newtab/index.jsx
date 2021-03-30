@@ -8,7 +8,7 @@ import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
     return (
-        <ChakraProvider>
+        <ChakraProvider resetCSS>
             <App />
         </ChakraProvider>
     )
