@@ -37,6 +37,7 @@ var server = new WebpackDevServer(compiler, {
   port: env.PORT,
   contentBase: path.join(__dirname, '../build'),
   publicPath: `http://localhost:${env.PORT}`,
+  historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': '*',
   },

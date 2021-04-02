@@ -1,19 +1,28 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
+import {Router, Switch, Route} from "react-router-dom";
+import {createHashHistory} from "history";
+import {ChakraProvider } from "@chakra-ui/react"
 
+// import './index.css';
 import Newtab from './Newtab';
-import './index.css';
+import Test from './Test';
 
-import { ChakraProvider } from "@chakra-ui/react"
+const history = createHashHistory();
 
 function App() {
     return (
         <ChakraProvider resetCSS>
-            <App />
+            <Router history={history}>
+                <Switch>
+                    <Route exact path="/" component={Newtab}/>
+                    <Route exact path="/test" component={Test}/>
+                </Switch>
+            </Router>
         </ChakraProvider>
     )
 }
 
-render(<Newtab />, window.document.querySelector('#app-container'));
+render(<App/>, window.document.querySelector('#app-container'));
 
 if (module.hot) module.hot.accept();
