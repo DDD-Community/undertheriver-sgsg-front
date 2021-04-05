@@ -1,11 +1,17 @@
 {
   "presets": [
-     "@babel/preset-env",
-     "@babel/preset-react",
-    "react-app"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+    "react-app",
+    "@emotion/babel-preset-css-prop"
   ],
-  "plugins": [
-     "@babel/plugin-proposal-class-properties",
-    "react-hot-loader/babel"
-  ]
+  "plugins": ["@babel/plugin-proposal-class-properties", "react-hot-loader/babel"]
 }
