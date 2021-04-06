@@ -4,7 +4,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import { ChakraProvider } from '@chakra-ui/react';
 
-// import './index.css';
+import './index.css';
 import Newtab from './Newtab';
 import Test from './Test';
 

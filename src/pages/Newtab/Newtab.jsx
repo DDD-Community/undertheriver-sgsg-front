@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Newtab.scss';
-import './index.css';
+
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import GNB from './components/GNB';
