@@ -32,7 +32,7 @@ const textareaBox = css`
 
 const inputBox = css`
   width: 16.875rem;
-  height: 2.500rem;
+  height: 2.5rem;
   margin-right: 1rem;
   background: #f7f7f7;
   color: #3c3a37;
@@ -48,7 +48,7 @@ const inputBox = css`
   }
 
   &.active {
-    padding-left: 6.250rem;
+    padding-left: 6.25rem;
   }
 `;
 
@@ -90,7 +90,7 @@ const keywordBadge = css`
   font-style: normal;
   font-weight: normal;
   font-size: 0.875rem;
-  line-height: 1.250rem;
+  line-height: 1.25rem;
   border-radius: 2px;
   cursor: pointer;
   z-index: 99;
