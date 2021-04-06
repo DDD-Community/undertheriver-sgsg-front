@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Newtab.css';
 import './Newtab.scss';
+import './index.css';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import GNB from './components/GNB';
@@ -10,7 +10,6 @@ const contentWrapper = css`
   display: flex;
   height: 100vh;
   max-width: 1280px;
-  margin: auto;
 `;
 
 const asideWrapper = css`
@@ -20,29 +19,24 @@ const asideWrapper = css`
 
 const cardListWrapper = css`
   flex-grow: 1;
+  margin-left: 9%;
 `;
 
-
 const Newtab = () => {
-  const [cards, setCards] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 }
-  ])
-  const cardList = cards.map(card => <li key={card.id}><Card /></li>)
+  const [cards, setCards] = useState([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]);
+  const cardList = cards.map((card) => (
+    <li key={card.id}>
+      <Card />
+    </li>
+  ));
   return (
     <>
-      <GNB/>
+      <GNB />
       <main className="wrapper">
         <section css={contentWrapper}>
-          <aside css={asideWrapper}>
-            aside menu
-          </aside>
+          <aside css={asideWrapper}>aside menu</aside>
           <section css={cardListWrapper}>
-            <ul className="card-list">
-              {cardList}
-            </ul>
+            <ul className="card-list">{cardList}</ul>
           </section>
         </section>
       </main>
