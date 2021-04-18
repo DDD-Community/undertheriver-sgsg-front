@@ -13,7 +13,7 @@ const Test = () => {
     if (type === 'close') {
       return;
     }
-    //TODO save memo keyword
+    //TODO save memo keyword /팝업에서 처리
   };
 
   return (
