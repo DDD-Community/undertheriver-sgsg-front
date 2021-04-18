@@ -208,14 +208,14 @@ const Popup = (props) => {
       if (!tagFlag) {
         setTagFlag(true);
       }
-    } else if (event.keyCode == 38) {
+    } else if (event.key === 'ArrowUp') {
       // top key press
       if (selectPosition > 0) {
         setSelectPosition(selectPosition - 1);
       }
-    } else if (event.keyCode == 40) {
+    } else if (event.key === 'ArrowDown') {
       // down key press
-      if (selectKeyword.length > position) {
+      if (selectKeyword.length > selectPosition) {
         setSelectPosition(selectPosition + 1);
       }
     }
@@ -292,7 +292,7 @@ const Popup = (props) => {
             autoComplete="off"
             value={keyword}
             onBlur={() => handleFocusOut()}
-            onKeyDown={handleKeyPress}
+            onKeyDown={(e) => handleKeyPress(e)}
             onChange={findFlag ? undefined : (e) => setKeyword(e.target.value)}
           />
           <Badge css={keywordTag} className={findFlag ? 'active red' : ''}>

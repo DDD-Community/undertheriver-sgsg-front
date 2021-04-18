@@ -10,3 +10,8 @@ body {
   height: 100%;
   background-color: #EDEDEF;
 }
+
+ol,
+ul {
+  list-style-type: none;
+}
