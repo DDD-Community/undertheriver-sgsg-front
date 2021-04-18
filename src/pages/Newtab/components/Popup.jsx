@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Textarea, Input, Button, Badge } from '@chakra-ui/react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import Tag from './Tag';
 
 const textareaWrapper = css`
-  padding: 3rem 2.5rem 1rem 1rem;
+  padding: 3rem 1rem 0 1rem;
 `;
 
 const inputWrapper = css`
@@ -80,7 +81,7 @@ const closeButton = css`
   background-repeat: no-repeat;
   cursor: pointer;
 `;
-const keywordBadge = css`
+const keywordTag = css`
   display: none;
   height: 1.5rem;
   padding: 0.125rem 0.5rem;
@@ -104,12 +105,15 @@ const keywordBadge = css`
     background-color: rgba(230, 70, 50, 0.2);
   }
 `;
+const selectBox = css`
+width: 
+`;
 
 const Popup = (props) => {
   const [memo, setMemo] = useState({
     value: '',
-    rows: 5,
-    minRows: 5,
+    rows: 6,
+    minRows: 6,
     maxRows: 10,
   });
   const [keyword, setKeyword] = useState('');
@@ -169,12 +173,15 @@ const Popup = (props) => {
   // keyword input keypress event
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' && keyword !== '') {
+      console.log('enter');
       if (selectKeyword.length > 0) {
         console.log(selectKeyword);
         setFindFlag(true);
         setKeyword('');
       } else {
         setSelectKeyword([keyword]);
+        setFindFlag(true);
+        setKeyword('');
       }
     } else if (event.key === 'Backspace') {
       if (selectKeyword.length > 0) {
@@ -188,13 +195,14 @@ const Popup = (props) => {
   return (
     <main
       css={{
-        display: props.popupActive ? 'block' : 'none',
+        // display: props.popupActive ? 'block' : 'none',
+        display: 'block',
         width: 400,
         minHeight: 280,
         maxHeight: 420,
         position: 'absolute',
-        left: 212,
-        top: 208,
+        left: 0,
+        top: 0,
         boxShadow: '10px 10px 16px rgba(211, 207, 197, 0.7)',
         borderRadius: 2,
         backgroundColor: '#fff',
@@ -223,9 +231,10 @@ const Popup = (props) => {
             onKeyDown={handleKeyPress}
             onChange={findFlag ? undefined : (e) => setKeyword(e.target.value)}
           />
-          <Badge css={keywordBadge} className={findFlag ? 'active red' : ''}>
+          <Badge css={keywordTag} className={findFlag ? 'active red' : ''}>
             {selectKeyword[0]}
           </Badge>
+          <div css={selectBox}></div>
         </div>
         <Button css={saveButton} onClick={() => props.popupResult('submit')}>
           저장
