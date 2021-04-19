@@ -13,3 +13,8 @@ ol,
 ul {
     list-style-type: none;
 }
+
+.login-box button {
+    margin-top: 4.125rem;
+    border-radius : 30px !important;
+}

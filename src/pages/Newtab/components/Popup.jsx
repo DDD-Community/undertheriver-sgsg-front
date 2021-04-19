@@ -108,7 +108,7 @@ const selectBox = css`
   width: 15.5rem;
   position: absolute;
   background: #fff;
-  border-radius: 0.25rem;
+  border-radius: 4px;
   margin-top: 0.5rem;
   box-shadow: 4px 4px 16px rgba(211, 207, 197, 0.7);
 `;

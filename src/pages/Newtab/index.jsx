@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import './index.css';
 import Newtab from './Newtab';
+import Login from './Login';
 import Test from './Test';
 
 const history = createHashHistory();
@@ -16,6 +17,7 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Newtab} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/test" component={Test} />
         </Switch>
       </Router>
