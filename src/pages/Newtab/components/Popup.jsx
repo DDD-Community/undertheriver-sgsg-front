@@ -4,7 +4,7 @@ import { Textarea, Input, Button, Badge } from '@chakra-ui/react';
 import { css, jsx } from '@emotion/react';
 
 const textareaWrapper = css`
-  padding: 3rem 2.5rem 1rem 1rem;
+  padding: 3rem 1rem 0 1rem;
 `;
 
 const inputWrapper = css`
@@ -80,7 +80,7 @@ const closeButton = css`
   background-repeat: no-repeat;
   cursor: pointer;
 `;
-const keywordBadge = css`
+const keywordTag = css`
   display: none;
   height: 1.5rem;
   padding: 0.125rem 0.5rem;
@@ -104,18 +104,40 @@ const keywordBadge = css`
     background-color: rgba(230, 70, 50, 0.2);
   }
 `;
+const selectBox = css`
+  width: 15.5rem;
+  position: absolute;
+  background: #fff;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 4px 4px 16px rgba(211, 207, 197, 0.7);
+`;
+const selectListItem = css`
+  padding: 0.563rem 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(60, 58, 55, 0.1);
+  }
+
+  &.active {
+    background: rgba(60, 58, 55, 0.1);
+  }
+`;
 
 const Popup = (props) => {
   const [memo, setMemo] = useState({
     value: '',
-    rows: 5,
-    minRows: 5,
+    rows: 6,
+    minRows: 6,
     maxRows: 10,
   });
   const [keyword, setKeyword] = useState('');
   const [selectKeyword, setSelectKeyword] = useState([]);
   const [tempArr, setTempArr] = useState([]);
   const [findFlag, setFindFlag] = useState(false);
+  const [tagFlag, setTagFlag] = useState(false);
+  const [selectPosition, setSelectPosition] = useState(0);
 
   useEffect(() => {
     //TODO get folder name list API
@@ -170,31 +192,80 @@ const Popup = (props) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' && keyword !== '') {
       if (selectKeyword.length > 0) {
-        console.log(selectKeyword);
         setFindFlag(true);
         setKeyword('');
       } else {
         setSelectKeyword([keyword]);
+        setFindFlag(true);
+        setKeyword('');
       }
     } else if (event.key === 'Backspace') {
-      if (selectKeyword.length > 0) {
-        console.log('test');
+      if (selectKeyword.length > 0 && tagFlag) {
         setFindFlag(false);
         setSelectKeyword([]);
+        setTagFlag(false);
+      }
+      if (!tagFlag) {
+        setTagFlag(true);
+      }
+    } else if (event.key === 'ArrowUp') {
+      // top key press
+      if (selectPosition > 0) {
+        setSelectPosition(selectPosition - 1);
+      }
+    } else if (event.key === 'ArrowDown') {
+      // down key press
+      if (selectKeyword.length > selectPosition) {
+        setSelectPosition(selectPosition + 1);
       }
     }
+  };
+
+  // select List click keyword
+  const handleSelectItem = () => {
+    setFindFlag(true);
+    setKeyword('');
+  };
+
+  // focus out keyword input
+  const handleFocusOut = () => {
+    if (keyword !== '') {
+      setSelectKeyword([keyword]);
+      setFindFlag(true);
+      setKeyword('');
+    }
+  };
+
+  const renderSelectList = () => {
+    let html = [];
+
+    selectKeyword.map((item, idx) => {
+      html.push(
+        <li
+          css={selectListItem}
+          className={selectPosition === idx && 'active'}
+          key={idx}
+          onClick={() => handleSelectItem()}
+        >
+          {item}
+        </li>,
+      );
+    });
+
+    return html;
   };
 
   return (
     <main
       css={{
-        display: props.popupActive ? 'block' : 'none',
+        // display: props.popupActive ? 'block' : 'none',
+        display: 'block',
         width: 400,
         minHeight: 280,
         maxHeight: 420,
         position: 'absolute',
-        left: 212,
-        top: 208,
+        left: 0,
+        top: 0,
         boxShadow: '10px 10px 16px rgba(211, 207, 197, 0.7)',
         borderRadius: 2,
         backgroundColor: '#fff',
@@ -220,12 +291,19 @@ const Popup = (props) => {
             focusBorderColor="black"
             autoComplete="off"
             value={keyword}
-            onKeyDown={handleKeyPress}
+            onBlur={() => handleFocusOut()}
+            onKeyDown={(e) => handleKeyPress(e)}
             onChange={findFlag ? undefined : (e) => setKeyword(e.target.value)}
           />
-          <Badge css={keywordBadge} className={findFlag ? 'active red' : ''}>
-            {selectKeyword[0]}
+          <Badge css={keywordTag} className={findFlag ? 'active red' : ''}>
+            {/* TODO temp code */}
+            {selectKeyword[selectPosition] + (tagFlag ? 'X' : '')}
           </Badge>
+          {!findFlag && selectKeyword.length > 0 && (
+            <div css={selectBox}>
+              <ul>{renderSelectList()}</ul>
+            </div>
+          )}
         </div>
         <Button css={saveButton} onClick={() => props.popupResult('submit')}>
           저장
