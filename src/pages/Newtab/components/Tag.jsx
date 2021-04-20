@@ -3,7 +3,7 @@ import React from 'react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 
-const Tag = ({ tagColor, textColor, text }) => {
+function Tag({ tagColor, textColor, text }) {
   return (
     <div
       css={{
@@ -21,6 +21,6 @@ const Tag = ({ tagColor, textColor, text }) => {
       {text}
     </div>
   );
-};
+}
 
 export default Tag;
