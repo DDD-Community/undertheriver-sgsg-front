@@ -19,8 +19,8 @@ const pageWrapper = css`
   }
 
   .login-box {
-    width: 676px;
-    height: 420px;
+    width: 42.25rem;
+    height: 26.25rem;
     background: #fff;
     box-shadow: 0px 8px 8px rgba(222, 218, 209, 0.5);
     border-radius: 8px;
@@ -39,12 +39,44 @@ const pageWrapper = css`
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.25rem;
-    padding-top: 3.375rem;
+    padding: 3.375rem 0 1.875rem;
+  }
+
+  .google-login {
+    padding-top: 4.125rem;
   }
 `;
+const loginBtn = css`
+  border-radius: 50px !important;
+  background: #f7f7f7 !important;
+  border: 1px solid rgba(165, 170, 178, 0.3) !important;
+  box-shadow: none !important;
+  padding: 1rem 4rem !important;
+
+  &:hover {
+    background: #eeeff1 !important;
+  }
+
+  div {
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  span {
+    color: #5d6571;
+    font-size: 0.875rem !important;
+    font-weight: bold !important;
+    padding: 0 !important;
+  }
+`;
+
 const clientId = '435245384070-qeqddufclaggtoo31sab5ckf3r3j8cfp.apps.googleusercontent.com';
 
 const Login = () => {
+  const loginSuccess = (response) => {
+    console.log(response);
+  };
+
   return (
     <>
       <GNB />
@@ -55,15 +87,17 @@ const Login = () => {
               사각사각에 <br />
               오신걸 환영해요 :)
             </h2>
-            <GoogleLogin
-              clientId={clientId}
-              onSuccess={(res) => {
-                console.log(res);
-              }}
-              onFailure={(err) => {
-                console.log(err);
-              }}
-            ></GoogleLogin>
+            <div className="google-login">
+              <GoogleLogin
+                css={loginBtn}
+                clientId={clientId}
+                buttonText="구글로 시작하기"
+                onSuccess={(res) => loginSuccess(res)}
+                onFailure={(err) => {
+                  console.log(err);
+                }}
+              />
+            </div>
             <p className="sub-txt">가입한 계정이 있다면? 로그인 하기</p>
           </div>
         </section>
