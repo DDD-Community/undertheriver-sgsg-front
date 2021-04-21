@@ -12,7 +12,7 @@ const squareLine = css`
   border-top: 0.125rem solid white;
 `;
 
-const Folder = ({ color }) => {
+function Folder({ color }) {
   return (
     <div
       css={{
@@ -26,5 +26,5 @@ const Folder = ({ color }) => {
       <hr css={squareLine} />
     </div>
   );
-};
+}
 export default Folder;
