@@ -5,7 +5,10 @@ import { css, jsx } from '@emotion/react';
 
 const gnbWrapper = css`
   height: 80px;
+  width: 100%;
   background: white;
+  position: fixed;
+  z-index: 10;
 `;
 
 const contentWrapper = css`
