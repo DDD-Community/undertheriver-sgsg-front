@@ -13,7 +13,7 @@ function Tag({ tagColor, textColor, text }) {
         marginBottom: '1rem',
         backgroundColor: `${tagColor}`,
         color: `${textColor}`,
-        width: '42px',
+        width: '20%',
         textAlign: 'center',
         lineHeight: '20px',
       }}

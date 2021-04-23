@@ -12,9 +12,11 @@ const pageWrapper = css`
   .content-wrapper {
     display: flex;
     max-width: 1280px;
+    min-height: 100vh;
+    height: 100%;
     margin: auto;
     justify-content: space-between;
-    height: 100%;
+    padding-top: 5rem;
     padding-bottom: 13.75rem;
   }
   .aside-wrapper {

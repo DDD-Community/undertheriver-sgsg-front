@@ -8,6 +8,7 @@ import './index.css';
 import Newtab from './Newtab';
 import Login from './Login';
 import Test from './Test';
+import Setting from './Setting';
 
 const history = createHashHistory();
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" component={Newtab} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/test" component={Test} />
+          <Route exact path="/setting" component={Setting} />
         </Switch>
       </Router>
     </ChakraProvider>
