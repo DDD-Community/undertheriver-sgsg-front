@@ -4,7 +4,7 @@ on:
     branches:
       - main
       - develop
-      - 'feat/**'
+      - 'feature/**'
       - 'fix/**'
       - 'hotfix/**'
       - 'refactor/**'
@@ -20,15 +20,20 @@ jobs:
       
       - name: 노드 버전 체크
         run: node -v
-
-      - name: 노드 모듈 캐싱
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       
       - name: 패키지 설치
         run: npm install
+
+      - name: Run ESLint
+        uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: src/
       
       - name: 패키지 빌드 
         run: npm run build
+
+      - name: S3 업로드
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: aws s3 cp --recursive --region ap-northeast-2 build s3://sgsg-deploy/frontend/build.zip
