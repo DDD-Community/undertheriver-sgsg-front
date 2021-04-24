@@ -1,4 +1,4 @@
-name: ci
+name: ci / cd
 on:
   push:
     branches:
@@ -9,11 +9,11 @@ on:
       - 'hotfix/**'
       - 'refactor/**'
       - 'chore/**'
-
+ 
 jobs:
   build:
     runs-on: ubuntu-18.04
-    name: 리액트 프로젝트 빌드
+    name: Build
     steps:
       - name: 소스코드 체크아웃
         uses: actions/checkout@v2
@@ -23,17 +23,62 @@ jobs:
       
       - name: 패키지 설치
         run: npm install
+      
+      - name: 패키지 빌드 
+        run: npm run build
+      
+      - name: 패키지 클린
+        run: rm -rf node_modules/
+     
+      - name: 소스코드 업로드
+        uses: actions/upload-artifact@v2
+        with:
+          name: source
+          path: .
+
+  deploy:
+    needs: [ build ]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-18.04
+    steps:
+      - name: 소스코드 다운로드
+        uses: actions/download-artifact@v2
+        with:
+          name: source
+
+      - name: 패키지 설치
+        run: npm install
+      
+      - name: 패키지 빌드 
+        run: npm run build
+
+      - name: aws 세팅
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}    
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: ap-northeast-2
+
+      - name: S3 업로드
+        run: aws deploy push --application-name undertheriver-sgsg --s3-location s3://sgsg-deploy/frontend/build.zip --source .
+
+      - name: code deploy
+        run: aws deploy create-deployment --application-name undertheriver-sgsg --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name frontend --s3-location bucket=sgsg-deploy,bundleType=zip,key=frontend/build.zip
+  
+  lint:
+    runs-on: ubuntu-18.04
+    name: ESLint
+    steps:
+      - name: 소스코드 체크아웃
+        uses: actions/checkout@v2
+
+      - name: ESLint 설치
+        run: npm i eslint
 
       - name: Run ESLint
         uses: stefanoeb/eslint-action@1.0.2
         with:
           files: src/
-      
+
       - name: 패키지 빌드 
         run: npm run build
-
-      - name: S3 업로드
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: aws s3 cp --recursive --region ap-northeast-2 build s3://sgsg-deploy/frontend/build.zip

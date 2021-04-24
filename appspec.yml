@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/frontend
+hooks:
+  BeforeInstall:
+    - location: scripts/clean.sh
+  AfterInstall:
+    - location: scripts/build.sh
+      runas: root
