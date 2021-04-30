@@ -6,9 +6,10 @@ import { css, jsx } from '@emotion/react';
 const gnbWrapper = css`
   height: 80px;
   width: 100%;
-  background: white;
+  background: #f9f7f2;
   position: fixed;
   z-index: 10;
+  border-bottom: 1px solid rgba(165, 170, 178, 0.3);
 `;
 
 const contentWrapper = css`

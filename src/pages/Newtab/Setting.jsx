@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import GNB from './components/GNB';
 import { Button } from '@chakra-ui/react';
+import PasswordInput from './components/PasswordInput';
 
 const pageWrapper = css`
   background: #f9f7f2;
@@ -37,7 +38,7 @@ const pageWrapper = css`
 
   .logout-btn {
     align-self: flex-end;
-    background: #A5AAB2;
+    background: #a5aab2;
     border-radius: 3.75rem;
     width: 10rem;
     height: 3.5rem;
@@ -55,7 +56,10 @@ const Setting = () => {
         <div className="content-wrapper">
           <h3 className="page-title">설정</h3>
           <div className="list-wrapper">연동 이메일</div>
-          <div className="list-wrapper">메모 비밀번호 설정</div>
+          <div className="list-wrapper">
+            메모 비밀번호 설정
+            <PasswordInput />
+          </div>
           <div className="list-wrapper">새 탭에서 시작</div>
           <button className="logout-btn">로그아웃</button>
         </div>
