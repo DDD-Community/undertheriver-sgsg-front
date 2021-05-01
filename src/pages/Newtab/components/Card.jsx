@@ -6,6 +6,7 @@ import Tag from './Tag';
 import Modal from './Modal';
 import CardMenu from './CardMenu';
 import Badge from './Badge';
+import MoreBtn from '../../../assets/img/more.svg';
 
 const cardWrapper = css`
   padding-top: 100%;
@@ -41,6 +42,10 @@ const headerSection = css`
   padding-right: 1rem;
 
   .date {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #888888;
+    line-height: 17px;
     align-self: center;
   }
   .badge {
@@ -98,10 +103,10 @@ function Card() {
         <div css={innerCardWrapper}>
           <div className="content">
             <div css={headerSection}>
-              <span className="date">header</span>
+              <span className="date">03.02</span>
               <Badge color={'#2DA5D7'} className="badge" />
               <span className="menu-btn" onClick={onOpenMenu}>
-                menu
+                <img src={MoreBtn} />
               </span>
             </div>
             {isMenuOpen && (

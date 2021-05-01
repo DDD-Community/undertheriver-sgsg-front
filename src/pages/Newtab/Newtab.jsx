@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/react';
 import GNB from './components/GNB';
 import Card from './components/Card';
 import Folder from './components/Folder';
+import NewMemoBtn from '../../assets/img/newMemo.svg';
 
 const pageWrapper = css`
   background: #f9f7f2;
@@ -29,19 +30,23 @@ const pageWrapper = css`
     flex-grow: 1;
     margin-top: 3.5rem;
     margin-left: 5%;
-    .folder-name {
-      display: inline;
-      color: #3c3a37;
-      font-size: 2.5rem;
-      line-height: 3.625rem;
-      font-weight: bold;
-      margin-right: 1rem;
-    }
-    .folder-count {
-      display: inline;
-      font-size: 2.5rem;
-      line-height: 3.625rem;
-      color: #3c3a37;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      .folder-name {
+        display: inline;
+        color: #3c3a37;
+        font-size: 2.5rem;
+        line-height: 3.625rem;
+        font-weight: bold;
+      }
+      .folder-count {
+        display: inline;
+        font-size: 2.5rem;
+        line-height: 3.625rem;
+        color: #3c3a37;
+        margin-left: 1rem;
+      }
     }
   }
 `;
@@ -77,12 +82,18 @@ const Newtab = () => {
       <main css={pageWrapper}>
         <section className="content-wrapper">
           <aside className="aside-wrapper">
-            폴더
             <Folder color={'#2DA5D7'} />
           </aside>
           <div className="right-section">
-            <h2 className="folder-name">전체</h2>
-            <h2 className="folder-count">{cardList.length}</h2>
+            <div className="header">
+              <h2 className="folder-name">
+                전체
+                <span className="folder-count">{cardList.length}</span>
+              </h2>
+              <figure>
+                <img src={NewMemoBtn} alt="Button too add new notes" />
+              </figure>
+            </div>
             <article css={cardListWrapper}>
               <ul className="card-list">{cardList}</ul>
             </article>
