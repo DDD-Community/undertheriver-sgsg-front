@@ -215,7 +215,7 @@ const Popup = (props) => {
       }
     } else if (event.key === 'ArrowDown') {
       // down key press
-      if (selectKeyword.length > selectPosition) {
+      if (selectKeyword.length > selectPosition + 1) {
         setSelectPosition(selectPosition + 1);
       }
     }
@@ -266,7 +266,7 @@ const Popup = (props) => {
         position: 'absolute',
         left: 0,
         top: 0,
-        boxShadow: '10px 10px 16px rgba(211, 207, 197, 0.7)',
+        boxShadow: '0px 10px 16px rgba(211, 207, 197, 0.7)',
         borderRadius: 2,
         backgroundColor: '#fff',
       }}
