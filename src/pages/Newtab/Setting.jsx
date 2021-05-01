@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import { Switch } from '@chakra-ui/react';
 import GNB from './components/GNB';
-import { Button } from '@chakra-ui/react';
 import PasswordInput from './components/PasswordInput';
 
 const pageWrapper = css`
@@ -60,7 +60,10 @@ const Setting = () => {
             메모 비밀번호 설정
             <PasswordInput />
           </div>
-          <div className="list-wrapper">새 탭에서 시작</div>
+          <div className="list-wrapper">
+            새 탭에서 시작
+            <Switch size="lg" />
+          </div>
           <button className="logout-btn">로그아웃</button>
         </div>
       </section>
