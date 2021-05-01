@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { createHashHistory } from 'history';
+
+const history = createHashHistory();
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -7,7 +9,7 @@ import GNB from './components/GNB';
 
 const pageWrapper = css`
   background: #f9f7f2;
-  height: calc(100vh - 80px);
+  height: 100vh;
 
   .login-wrapper {
     display: flex;
@@ -27,54 +29,47 @@ const pageWrapper = css`
     text-align: center;
   }
 
-  .title {
+  h2 {
     padding-top: 4.063rem;
     font-size: 2.625rem;
     font-weight: 300;
-    line-height: 3.813rem;
+    //line-height: 3.813rem;
+  }
+`;
+
+const googleLoginWrapper = css`
+  padding-top: 3.375rem;
+
+  button {
+    padding: 1rem 4rem;
+    border-radius: 50px;
+    background: #f7f7f7;
+    border: 1px solid rgba(165, 170, 178, 0.3);
+    box-shadow: none;
   }
 
-  .sub-txt {
+  button:hover {
+    background: #eeeff1 !important;
+  }
+`;
+
+const subTextWrapper = css`
+  padding: 3rem 0 2.813rem;
+
+  a {
     color: #a5aab2;
     font-size: 0.875rem;
     font-weight: 400;
-    line-height: 1.25rem;
-    padding: 3.375rem 0 1.875rem;
-  }
-
-  .google-login {
-    padding-top: 4.125rem;
-  }
-`;
-const loginBtn = css`
-  border-radius: 50px !important;
-  background: #f7f7f7 !important;
-  border: 1px solid rgba(165, 170, 178, 0.3) !important;
-  box-shadow: none !important;
-  padding: 1rem 4rem !important;
-
-  &:hover {
-    background: #eeeff1 !important;
-  }
-
-  div {
-    background: none !important;
-    padding: 0 !important;
-  }
-
-  span {
-    color: #5d6571;
-    font-size: 0.875rem !important;
-    font-weight: bold !important;
-    padding: 0 !important;
+    //line-height: 1.25rem;
   }
 `;
 
 const clientId = '435245384070-qeqddufclaggtoo31sab5ckf3r3j8cfp.apps.googleusercontent.com';
 
 const Login = () => {
-  const loginSuccess = (response) => {
-    console.log(response);
+  const googleLoginApi = () => {
+    // TODO google Login API
+    history.push('/');
   };
 
   return (
@@ -83,22 +78,16 @@ const Login = () => {
       <main css={pageWrapper}>
         <section className="login-wrapper">
           <div className="login-box">
-            <h2 className="title">
+            <h2>
               사각사각에 <br />
               오신걸 환영해요 :)
             </h2>
-            <div className="google-login">
-              <GoogleLogin
-                css={loginBtn}
-                clientId={clientId}
-                buttonText="구글로 시작하기"
-                onSuccess={(res) => loginSuccess(res)}
-                onFailure={(err) => {
-                  console.log(err);
-                }}
-              />
+            <div css={googleLoginWrapper}>
+              <button onClick={() => googleLoginApi()}>구글로 시작하기</button>
             </div>
-            <p className="sub-txt">가입한 계정이 있다면? 로그인 하기</p>
+            <div css={subTextWrapper}>
+              <a href="">개인 정보 이용 약관 바로가기</a>
+            </div>
           </div>
         </section>
       </main>
