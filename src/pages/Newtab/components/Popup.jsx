@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Textarea, Input, Button, Badge } from '@chakra-ui/react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import CloseBtn from '../../../assets/img/closeBtn.svg';
 
 const textareaWrapper = css`
   padding: 3rem 1rem 0 1rem;
@@ -73,8 +74,7 @@ const closeButton = css`
   top: 1rem;
   right: 1rem;
   padding: 0.75rem;
-  background-color: black;
-  //background-image: url(../../../assets/img/closeBtn.svg);
+  background-image: url(${CloseBtn});
   //background-position: center;
   background-size: 1.5rem 1.5rem;
   background-repeat: no-repeat;
@@ -256,19 +256,19 @@ const Popup = (props) => {
   };
 
   return (
-    <main
+    <aside
       css={{
-        // display: props.popupActive ? 'block' : 'none',
         display: 'block',
         width: 400,
         minHeight: 280,
         maxHeight: 420,
         position: 'absolute',
-        left: 0,
-        top: 0,
+        left: props.mainFlag ? 100 : 0,
+        top: props.mainFlag ? 100 : 0,
         boxShadow: '0px 10px 16px rgba(211, 207, 197, 0.7)',
         borderRadius: 2,
         backgroundColor: '#fff',
+        zIndex: 99,
       }}
     >
       <a css={closeButton} onClick={() => props.popupResult('close')}></a>
@@ -309,7 +309,7 @@ const Popup = (props) => {
           저장
         </Button>
       </div>
-    </main>
+    </aside>
   );
 };
 

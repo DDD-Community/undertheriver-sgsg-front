@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -12,10 +13,12 @@ const gnbWrapper = css`
   position: fixed;
   z-index: 10;
   border-bottom: 1px solid rgba(165, 170, 178, 0.3);
+
   .main-logo {
     margin-top: -1px;
     border-bottom: 1px solid rgba(165, 170, 178, 0.3);
   }
+
   .account {
     display: flex;
     align-items: center;
@@ -34,18 +37,18 @@ const GNB = () => {
     <nav css={gnbWrapper}>
       <div css={contentWrapper}>
         <h1 className="menu">
-          <a href="./newtab.html">
+          <Link to="/">
             <figure>
               <img src={MainLogo} className="main-logo" alt="A logo for sagaksagak website" />
             </figure>
-          </a>
+          </Link>
         </h1>
         <h2 className="account">
-          <a href="./newtab.html#setting">
+          <Link to="/setting">
             <figure>
               <img src={ProfilePhoto} className="profile-photo" alt="A photo of main profile" />
             </figure>
-          </a>
+          </Link>
         </h2>
       </div>
     </nav>

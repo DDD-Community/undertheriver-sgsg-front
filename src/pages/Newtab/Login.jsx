@@ -6,6 +6,7 @@ const history = createHashHistory();
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import GNB from './components/GNB';
+import GoogleIcon from '../../assets/img/icon-google.png';
 
 const pageWrapper = css`
   background: #f9f7f2;
@@ -42,14 +43,27 @@ const googleLoginWrapper = css`
 
   button {
     padding: 1rem 4rem;
-    border-radius: 50px;
-    background: #f7f7f7;
+    color: #636972;
+    font-weight: 700;
+    background-color: #f7f7f7;
+    // background-image: url(${GoogleIcon});
+    // background-size: 26px 27px;
+    // background-position: left 64px center;
+    // background-repeat: no-repeat;
     border: 1px solid rgba(165, 170, 178, 0.3);
+    border-radius: 50px;
     box-shadow: none;
   }
 
+  img {
+    display: inline-block;
+    width: 1.625rem;
+    height: 1.688rem;
+    margin-right: 0.75rem;
+  }
+
   button:hover {
-    background: #eeeff1 !important;
+    background-color: #eeeff1 !important;
   }
 `;
 
@@ -83,7 +97,10 @@ const Login = () => {
               오신걸 환영해요 :)
             </h2>
             <div css={googleLoginWrapper}>
-              <button onClick={() => googleLoginApi()}>구글로 시작하기</button>
+              <button onClick={() => googleLoginApi()}>
+                <img src={GoogleIcon} />
+                구글로 시작하기
+              </button>
             </div>
             <div css={subTextWrapper}>
               <a href="">개인 정보 이용 약관 바로가기</a>
