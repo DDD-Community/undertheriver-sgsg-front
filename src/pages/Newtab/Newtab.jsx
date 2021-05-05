@@ -7,6 +7,7 @@ import Card from './components/Card';
 import Folder from './components/Folder';
 import Popup from './components/Popup';
 import NewMemoBtn from '../../assets/img/newMemo.svg';
+import FolderList from './components/FolderList';
 
 const pageWrapper = css`
   background: #f9f7f2;
@@ -24,7 +25,7 @@ const pageWrapper = css`
   }
 
   .aside-wrapper {
-    min-width: 15%;
+    min-width: 20%;
     height: 100%;
     margin-top: 9.5rem;
     flex-shrink: 0;
@@ -91,7 +92,7 @@ const Newtab = () => {
       <main css={pageWrapper}>
         <section className="content-wrapper">
           <aside className="aside-wrapper">
-            <Folder color={'#2DA5D7'} />
+            <FolderList />
           </aside>
           <div className="right-section">
             <div className="header">

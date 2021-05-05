@@ -115,7 +115,7 @@ function Card() {
               </div>
             )}
             <div css={bodySection} onClick={onOpenModal}>
-              body
+              내용입니다!
               <Modal visible={isModalVisible} />
             </div>
             <div css={tagSection}>
