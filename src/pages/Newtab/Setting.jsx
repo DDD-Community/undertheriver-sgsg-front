@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/react';
 import { Switch } from '@chakra-ui/react';
 import GNB from './components/GNB';
 import PasswordInput from './components/PasswordInput';
+import PasswordInputModal from './components/PasswordInputModal';
 
 const pageWrapper = css`
   background: #f9f7f2;
@@ -49,6 +50,10 @@ const pageWrapper = css`
   }
 `;
 const Setting = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  function onOpenModal() {
+    setIsModalVisible(true);
+  }
   return (
     <>
       <GNB />
@@ -58,7 +63,10 @@ const Setting = () => {
           <div className="list-wrapper">연동 이메일</div>
           <div className="list-wrapper">
             메모 비밀번호 설정
-            <PasswordInput />
+            <button className="setting-btn" onClick={onOpenModal}>
+              비밀번호 변경
+            </button>
+            <PasswordInputModal visible={isModalVisible} onChange={setIsModalVisible} />
           </div>
           <div className="list-wrapper">
             새 탭에서 시작
