@@ -6,6 +6,9 @@ import { PinInput, PinInputField } from '@chakra-ui/react';
 
 const pinInputField = css`
   margin-right: 8px;
+  border: 1px solid #a5aab2;
+  width: 68px;
+  height: 68px;
 `;
 
 const PasswordField = () => {
@@ -15,7 +18,7 @@ const PasswordField = () => {
         <PinInputField css={pinInputField} />
         <PinInputField css={pinInputField} />
         <PinInputField css={pinInputField} />
-        <PinInputField />
+        <PinInputField css={pinInputField} />
       </PinInput>
     </div>
   );
