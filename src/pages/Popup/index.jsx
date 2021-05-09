@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import Popup from '../Newtab/components/Popup';
 import './index.css';
 
 function App() {
+  const [writePopup, setWritePopup] = useState({
+    flag: true,
+    left: 0,
+    top: 0,
+  });
+
   return (
     <ChakraProvider resetCSS>
-      <Popup />
+      {writePopup.flag && <Popup extension writePopup={writePopup} setWritePopup={setWritePopup} />}
     </ChakraProvider>
   );
 }
