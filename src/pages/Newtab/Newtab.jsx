@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -84,7 +84,22 @@ const Newtab = () => {
       <Card />
     </li>
   ));
-  const [popupFlag, setPopupFlag] = useState(false);
+  const [writePopup, setWritePopup] = useState({
+    flag: false,
+    left: 0,
+    top: 0,
+  });
+  const buttonRef = useRef();
+
+  const memoWrite = () => {
+    if (buttonRef.current !== null) {
+      setWritePopup({
+        flag: true,
+        left: buttonRef.current.offsetLeft - 344,
+        top: buttonRef.current.offsetTop + 72,
+      });
+    }
+  };
 
   return (
     <>
@@ -100,7 +115,7 @@ const Newtab = () => {
                 전체
                 <span className="folder-count">{cardList.length}</span>
               </h2>
-              <button onClick={() => setPopupFlag(true)}>
+              <button onClick={() => memoWrite()} ref={buttonRef}>
                 <figure>
                   <img src={NewMemoBtn} alt="Button too add new notes" />
                 </figure>
@@ -112,7 +127,7 @@ const Newtab = () => {
           </div>
         </section>
       </main>
-      {popupFlag && <Popup mainFlag={popupFlag} />}
+      {writePopup.flag && <Popup writePopup={writePopup} setWritePopup={setWritePopup} />}
     </>
   );
 };
