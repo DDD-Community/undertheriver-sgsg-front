@@ -43,13 +43,15 @@ const GNB = () => {
             </figure>
           </Link>
         </h1>
-        <h2 className="account">
-          <Link to="/setting">
-            <figure>
-              <img src={ProfilePhoto} className="profile-photo" alt="A photo of main profile" />
-            </figure>
-          </Link>
-        </h2>
+        {localStorage.getItem('access_token') && (
+          <h2 className="account">
+            <Link to="/setting">
+              <figure>
+                <img src={ProfilePhoto} className="profile-photo" alt="A photo of main profile" />
+              </figure>
+            </Link>
+          </h2>
+        )}
       </div>
     </nav>
   );

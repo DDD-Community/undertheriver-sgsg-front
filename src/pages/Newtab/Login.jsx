@@ -74,7 +74,7 @@ const subTextWrapper = css`
 const Login = () => {
   const googleLogin = () => {
     location.href =
-      'http://sgsg.space/oauth2/authorization/google?redirect_uri=http://localhost:3000/newtab.html#/after-login';
+      'http://api.sgsg.space/oauth2/authorization/google?redirect_uri=http://localhost:3000/after-login';
   };
 
   return (
