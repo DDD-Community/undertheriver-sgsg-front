@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Textarea, Button } from '@chakra-ui/react';
 import TagInput from './TagInput';
+import Api, { checkFolder } from '../../api/api';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -87,6 +88,7 @@ const closeButton = css`
 `;
 
 const Popup = (props) => {
+  const [loading, setLoading] = useState(false);
   const [memo, setMemo] = useState({
     value: '',
     rows: 6,
@@ -134,6 +136,35 @@ const Popup = (props) => {
     }
   };
 
+  const writeMemoApi = () => {
+    try {
+      let userId = '';
+      setLoading(true);
+      Api.checkFolder(userId)
+        .then((response) => {
+          setLoading(false);
+          if (response.status === 200) {
+            let data = response.data;
+            if (data.code === 200) {
+              console.log(data);
+            } else {
+              // error popup
+            }
+          } else {
+            // error popup
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          // error popup
+        });
+    } catch (e) {
+      setLoading(false);
+      // error popup
+    }
+  };
+
   return (
     <aside
       css={{
@@ -165,7 +196,7 @@ const Popup = (props) => {
           </div>
           <div css={inputWrapper}>
             <TagInput />
-            <Button css={saveButton} onClick={() => writePopupResult('submit')}>
+            <Button css={saveButton} onClick={() => writeMemoApi('submit')}>
               저장
             </Button>
           </div>
