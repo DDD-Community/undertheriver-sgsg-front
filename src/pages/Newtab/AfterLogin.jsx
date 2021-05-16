@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 
 const AfterLogin = () => {
   useEffect(() => {
@@ -15,7 +15,7 @@ const AfterLogin = () => {
         }
         localStorage.setItem('access_token', token);
         // history.push({ pathname: '/' });
-        window.location.href = 'http://localhost:3000/newtab.html#/'; //## TODO 수정 사항
+        window.location.href = 'http://localhost:3000/'; //## TODO 수정 사항
       }
     } catch (e) {
       history.push('/login');

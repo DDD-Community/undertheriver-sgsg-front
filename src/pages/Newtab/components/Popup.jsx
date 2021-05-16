@@ -125,7 +125,7 @@ const Popup = (props) => {
       setSubmitFlag(true);
     }
     // chrome-extension popup close
-    if (props.extension && submitFlag) {
+    if ((props.extension && type === 'close') || (props.extension && submitFlag)) {
       window.close();
       return;
     } else if (!props.extension) {
