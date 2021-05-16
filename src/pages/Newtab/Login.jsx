@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { createHashHistory } from 'history';
-
-const history = createHashHistory();
+import React from 'react';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -46,10 +43,6 @@ const googleLoginWrapper = css`
     color: #636972;
     font-weight: 700;
     background-color: #f7f7f7;
-    // background-image: url(${GoogleIcon});
-    // background-size: 26px 27px;
-    // background-position: left 64px center;
-    // background-repeat: no-repeat;
     border: 1px solid rgba(165, 170, 178, 0.3);
     border-radius: 50px;
     box-shadow: none;
@@ -78,12 +71,10 @@ const subTextWrapper = css`
   }
 `;
 
-const clientId = '435245384070-qeqddufclaggtoo31sab5ckf3r3j8cfp.apps.googleusercontent.com';
-
 const Login = () => {
-  const googleLoginApi = () => {
-    // TODO google Login API
-    history.push('/');
+  const googleLogin = () => {
+    location.href =
+      'http://sgsg.space/oauth2/authorization/google?redirect_uri=http://localhost:3000/newtab.html#/after-login';
   };
 
   return (
@@ -97,7 +88,7 @@ const Login = () => {
               오신걸 환영해요 :)
             </h2>
             <div css={googleLoginWrapper}>
-              <button onClick={() => googleLoginApi()}>
+              <button onClick={() => googleLogin()}>
                 <img src={GoogleIcon} />
                 구글로 시작하기
               </button>
