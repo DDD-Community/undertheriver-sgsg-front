@@ -47,7 +47,7 @@ function moveLogin() {
 export function checkFolder(userId) {
   return new Promise((resolve, reject) => {
     return baseApi(apiPrefix)
-      .get('api/v1/folders' + '/' + userId, getAccessTokenHeader())
+      .get('/folders' + '/' + userId, getAccessTokenHeader())
       .then((response) => {
         successStatusCheck(response, resolve);
       })
