@@ -2,6 +2,8 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 process.env.ASSET_PATH = '/';
+process.env.API_URL = 'http://api.space.sgsg/v1';
+process.env.LOGIN_URL = 'http://localhost:3000/after-login';
 
 var WebpackDevServer = require('webpack-dev-server'),
   webpack = require('webpack'),
@@ -21,9 +23,7 @@ for (var entryName in config.entry) {
   }
 }
 
-config.plugins = [new webpack.HotModuleReplacementPlugin()].concat(
-  config.plugins || []
-);
+config.plugins = [new webpack.HotModuleReplacementPlugin()].concat(config.plugins || []);
 
 delete config.chromeExtensionBoilerplate;
 
