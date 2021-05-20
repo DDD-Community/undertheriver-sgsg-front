@@ -151,7 +151,7 @@ function TagInput() {
 
   // focus out keyword input
   const handleFocusOut = () => {
-    if (keyword !== '') {
+    if (keyword !== '' || keyword.length !== 0) {
       setSelectKeyword([keyword]);
       setFindFlag(true);
       setKeyword('');
