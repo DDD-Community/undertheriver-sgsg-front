@@ -98,9 +98,15 @@ var options = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.API_URL': JSON.stringify(process.env.API_URL),
-      'process.env.LOGIN_URL': JSON.stringify(process.env.LOGIN_URL),
+      'process.env.NODE_ENV':
+        process.env.NODE_ENV === 'production'
+          ? JSON.stringify('production')
+          : JSON.stringify('development'),
+      API_URL: JSON.stringify('http://api.space.sgsg/v1'),
+      LOGIN_URL:
+        process.env.NODE_ENV === 'production'
+          ? JSON.stringify('https://sgsg.space/after-login')
+          : JSON.stringify('http://localhost:3000/after-login'),
     }),
     new webpack.ProgressPlugin(),
     // clean the build folder
