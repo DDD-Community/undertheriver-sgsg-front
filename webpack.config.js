@@ -107,6 +107,9 @@ var options = {
         process.env.NODE_ENV === 'production'
           ? JSON.stringify('https://sgsg.space/after-login')
           : JSON.stringify('http://localhost:3000/after-login'),
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      API_URL: JSON.stringify(process.env.API_URL),
+      LOGIN_URL: JSON.stringify(process.env.LOGIN_URL),
     }),
     new webpack.ProgressPlugin(),
     // clean the build folder
