@@ -2,6 +2,6 @@
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   PORT: process.env.PORT || 3000,
-  API_URL: process.env.API_URL,
-  LOGIN_URL: process.env.LOGIN_URL,
+  REACT_API_URL: process.env.REACT_APP_API_URL,
+  REACT_LOGIN_URL: process.env.REACT_APP_LOGIN_URL,
 };

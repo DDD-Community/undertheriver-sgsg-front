@@ -2,8 +2,8 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 process.env.ASSET_PATH = '/';
-process.env.API_URL = 'http://api.space.sgsg/v1';
-process.env.LOGIN_URL = 'http://localhost:3000/after-login';
+process.env.REACT_APP_API_URL = 'http://api.space.sgsg/v1';
+process.env.REACT_APP_LOGIN_URL = 'http://localhost:3000/after-login';
 
 var WebpackDevServer = require('webpack-dev-server'),
   webpack = require('webpack'),
