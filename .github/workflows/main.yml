@@ -9,7 +9,7 @@ on:
       - 'hotfix/**'
       - 'refactor/**'
       - 'chore/**'
- 
+
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -17,19 +17,19 @@ jobs:
     steps:
       - name: 소스코드 체크아웃
         uses: actions/checkout@v2
-      
+
       - name: 노드 버전 체크
         run: node -v
-      
+
       - name: 패키지 설치
         run: npm install
-      
-      - name: 패키지 빌드 
+
+      - name: 패키지 빌드
         run: npm run build
-      
+
       - name: 패키지 클린
         run: rm -rf node_modules/
-     
+
       - name: 소스코드 업로드
         uses: actions/upload-artifact@v2
         with:
@@ -48,14 +48,14 @@ jobs:
 
       - name: 패키지 설치
         run: npm install
-      
-      - name: 패키지 빌드 
+
+      - name: 패키지 빌드
         run: npm run build
 
       - name: aws 세팅
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}    
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: ap-northeast-2
 
@@ -64,7 +64,7 @@ jobs:
 
       - name: code deploy
         run: aws deploy create-deployment --application-name undertheriver-sgsg --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name frontend --s3-location bucket=sgsg-deploy,bundleType=zip,key=frontend/build.zip
-  
+
   lint:
     runs-on: ubuntu-18.04
     name: ESLint
@@ -80,5 +80,5 @@ jobs:
         with:
           files: src/
 
-      - name: 패키지 빌드 
-        run: npm run build 
+      - name: 패키지 빌드
+        run: npm run build

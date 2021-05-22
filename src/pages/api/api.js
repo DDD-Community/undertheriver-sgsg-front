@@ -3,7 +3,7 @@ import { createHashHistory } from 'history';
 
 const history = createHashHistory();
 
-const apiPrefix = API_URL;
+const apiPrefix = REACT_APP_API_URL;
 // const apiPrefix = 'http://api.space.sgsg/v1';
 
 function baseApi(apiUrl) {

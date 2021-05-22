@@ -8,6 +8,7 @@ var webpack = require('webpack'),
   TerserPlugin = require('terser-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
+const Dotenv = require('dotenv-webpack');
 
 var alias = {
   'react-dom': '@hot-loader/react-dom',
@@ -97,10 +98,11 @@ var options = {
       .concat(['.js', '.jsx', '.ts', '.tsx', '.css']),
   },
   plugins: [
+    new Dotenv(),
     new webpack.DefinePlugin({
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      API_URL: JSON.stringify(process.env.API_URL),
-      LOGIN_URL: JSON.stringify(process.env.LOGIN_URL),
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
+      REACT_APP_LOGIN_URL: JSON.stringify(process.env.REACT_APP_LOGIN_URL),
     }),
     new webpack.ProgressPlugin(),
     // clean the build folder
