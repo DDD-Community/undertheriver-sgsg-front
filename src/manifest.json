@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SagakSagak",
+  "version": "1.0",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {

@@ -2,7 +2,7 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 process.env.ASSET_PATH = '/';
-process.env.API_URL = 'http://api.space.sgsg/v1';
+process.env.API_URL = 'https://api.sgsg.space/v1';
 process.env.LOGIN_URL = 'https://sgsg.space/after-login';
 
 var webpack = require('webpack'),
