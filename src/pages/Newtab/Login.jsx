@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
@@ -72,32 +75,37 @@ const subTextWrapper = css`
 `;
 
 const Login = () => {
+  useEffect(() => {
+    chrome.tabs.update({ url: 'https://sgsg.space' });
+  }, []);
   const googleLogin = () => {
-    location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
+    // location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
+    // location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=https://sgsg.space/after-login`;
+    // console.log(REACT_APP_LOGIN_URL);
   };
 
   return (
     <>
-      <GNB />
-      <main css={pageWrapper}>
-        <section className="login-wrapper">
-          <div className="login-box">
-            <h2>
-              사각사각에 <br />
-              오신걸 환영해요 :)
-            </h2>
-            <div css={googleLoginWrapper}>
-              <button onClick={() => googleLogin()}>
-                <img src={GoogleIcon} />
-                구글로 시작하기
-              </button>
-            </div>
-            <div css={subTextWrapper}>
-              <a href="">개인 정보 이용 약관 바로가기</a>
-            </div>
-          </div>
-        </section>
-      </main>
+      {/*<GNB />*/}
+      {/*<main css={pageWrapper}>*/}
+      {/*  <section className="login-wrapper">*/}
+      {/*    <div className="login-box">*/}
+      {/*      <h2>*/}
+      {/*        사각사각에 <br />*/}
+      {/*        오신걸 환영해요 :)*/}
+      {/*      </h2>*/}
+      {/*      <div css={googleLoginWrapper}>*/}
+      {/*        <button onClick={() => googleLogin()}>*/}
+      {/*          <img src={GoogleIcon} />*/}
+      {/*          구글로 시작하기*/}
+      {/*        </button>*/}
+      {/*      </div>*/}
+      {/*      <div css={subTextWrapper}>*/}
+      {/*        <a href="">개인 정보 이용 약관 바로가기</a>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </section>*/}
+      {/*</main>*/}
     </>
   );
 };

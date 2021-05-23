@@ -4,7 +4,6 @@ import { createHashHistory } from 'history';
 const history = createHashHistory();
 
 const apiPrefix = REACT_APP_API_URL;
-// const apiPrefix = 'https://api.sgsg.space/v1';
 
 function baseApi(apiUrl) {
   return axios.create({

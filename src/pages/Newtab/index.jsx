@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import './index.css';
@@ -12,7 +12,7 @@ import AfterLogin from './AfterLogin';
 import Setting from './Setting';
 import NotFound from './NotFound';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 function App() {
   return (
