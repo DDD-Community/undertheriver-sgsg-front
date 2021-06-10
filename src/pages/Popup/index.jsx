@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { ChakraProvider } from '@chakra-ui/react';
-import Popup from '../Newtab/components/Popup';
+import Popup from '../Popup/Popup';
 import './index.css';
 
 function App() {
