@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "사각사각",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "options_page": "options.html",
   "background": {
     "service_worker": "background.bundle.js"
