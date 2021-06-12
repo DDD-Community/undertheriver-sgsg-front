@@ -1,7 +1,4 @@
-chrome.runtime.onInstalled.addListener((reason) => {
-  if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    chrome.tabs.create({
-      url: 'https://sgsg.space',
-    });
-  }
+chrome.action.onClicked.addListener(function (activeTab) {
+  let newURL = 'http://sgsg.space/';
+  chrome.tabs.create({ url: newURL });
 });
