@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "SagakSagak",
-  "version": "1.0",
+  "name": "사각사각",
+  "version": "1.0.2",
   "options_page": "options.html",
   "background": {
     "service_worker": "background.bundle.js"
@@ -11,9 +11,7 @@
     "default_icon": "icon-128.png"
   },
   "permissions": [
-    "tabs",
-    "storage",
-    "https://sgsg.space/*"
+    "tabs"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"
