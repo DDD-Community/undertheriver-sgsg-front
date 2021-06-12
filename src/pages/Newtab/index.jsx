@@ -1,18 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
+<<<<<<< HEAD
+=======
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { ChakraProvider } from '@chakra-ui/react';
 
+>>>>>>> parent of 932d412 (fix: login setting)
 import './index.css';
-import PrivateRoute from './PrivateRoute';
-import Newtab from './Newtab';
-import Login from './Login';
-import AfterLogin from './AfterLogin';
-import Setting from './Setting';
-import NotFound from './NotFound';
 
-const history = createHashHistory();
+<<<<<<< HEAD
+import Login from './Login';
+=======
+const history = createBrowserHistory();
 
 function App() {
   return (
@@ -30,7 +30,8 @@ function App() {
     </ChakraProvider>
   );
 }
+>>>>>>> parent of 932d412 (fix: login setting)
 
-render(<App />, window.document.querySelector('#app-container'));
+render(<Login />, window.document.querySelector('#app-container'));
 
 if (module.hot) module.hot.accept();

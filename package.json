@@ -1,7 +1,7 @@
 {
   "name": "sagak-sagak",
   "version": "0.0.1",
-  "description": "A chrome extension of SagakSagak",
+  "description": " 개인의 생각, 다양한 정보들을 직관적이고 편리하게 관리할 수 있는 메모 서비스",
   "license": "MIT",
   "repository": {
     "type": "git",
