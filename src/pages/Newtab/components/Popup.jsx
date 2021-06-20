@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Textarea, Button } from '@chakra-ui/react';
-import TagInput from './TagInput';
+import TagInput from '../../Popup/TagInput';
 import Api, { checkFolder } from '../../api/api';
 
 /** @jsx jsx */

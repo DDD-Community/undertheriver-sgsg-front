@@ -3,7 +3,7 @@ import { createHashHistory } from 'history';
 
 const history = createHashHistory();
 
-const apiPrefix = REACT_APP_API_URL;
+const apiPrefix = 'https://api.sgsg.space/v1';
 
 function baseApi(apiUrl) {
   return axios.create({
@@ -43,6 +43,20 @@ function moveLogin() {
   history.push('/login');
 }
 
+//## 다음 폴더 색상 조회
+export function checkFolderColor() {
+  return new Promise((resolve, reject) => {
+    return baseApi(apiPrefix)
+      .get('/folders/color', getAccessTokenHeader())
+      .then((response) => {
+        successStatusCheck(response, resolve);
+      })
+      .catch((err) => {
+        failStatusCheck(err, reject);
+      });
+  });
+}
+
 export function checkFolder(userId) {
   return new Promise((resolve, reject) => {
     return baseApi(apiPrefix)
@@ -56,6 +70,22 @@ export function checkFolder(userId) {
   });
 }
 
+//## 메모 생성
+export function createMemo(data) {
+  return new Promise((resolve, reject) => {
+    return baseApi(apiPrefix)
+      .post('/memos', data, getAccessTokenHeader())
+      .then((response) => {
+        successStatusCheck(response, resolve);
+      })
+      .catch((err) => {
+        failStatusCheck(err, reject);
+      });
+  });
+}
+
 export default {
+  checkFolderColor,
   checkFolder,
+  createMemo,
 };

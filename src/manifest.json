@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SagakSagak",
-  "version": "1.0",
+  "version": "1.0.2",
   "options_page": "options.html",
   "background": {
     "service_worker": "background.bundle.js"
@@ -12,8 +12,8 @@
   },
   "permissions": [
     "tabs",
-    "storage",
-    "https://sgsg.space/*"
+    "*://sgsg.space/*",
+    "*://api.sgsg.space/*"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"

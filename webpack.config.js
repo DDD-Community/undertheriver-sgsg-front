@@ -89,6 +89,13 @@ var options = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
   resolve: {

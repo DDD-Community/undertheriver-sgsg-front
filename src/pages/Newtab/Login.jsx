@@ -70,7 +70,6 @@ const subTextWrapper = css`
     color: #a5aab2;
     font-size: 0.875rem;
     font-weight: 400;
-    //line-height: 1.25rem;
   }
 `;
 
@@ -78,11 +77,9 @@ const Login = () => {
   useEffect(() => {
     chrome.tabs.update({ url: 'https://sgsg.space' });
   }, []);
-  const googleLogin = () => {
-    // location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
-    // location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=https://sgsg.space/after-login`;
-    // console.log(REACT_APP_LOGIN_URL);
-  };
+  // const googleLogin = () => {
+  //   location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
+  // };
 
   return (
     <>

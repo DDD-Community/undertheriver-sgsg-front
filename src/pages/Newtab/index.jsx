@@ -19,9 +19,9 @@ function App() {
     <ChakraProvider resetCSS>
       <BrowserRouter history={history}>
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/after-login" component={AfterLogin} />
-          <PrivateRoute exact path="/" component={Newtab} />
+          <PrivateRoute exact path="/newtab" component={Newtab} />
           <PrivateRoute exact path="/setting" component={Setting} />
           <Route path="/error" component={NotFound} />
           <Redirect path="*" to="/" /> *
