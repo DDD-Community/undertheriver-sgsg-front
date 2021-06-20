@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Textarea, Button } from '@chakra-ui/react';
+import Api from '../api/api';
 import TagInput from './TagInput';
-import Api, { checkFolder } from '../api/api';
+import LinkPreview from './LinkPreview';
 import { Howl } from 'howler';
 
 /** @jsx jsx */
@@ -103,20 +104,15 @@ const Popup = (props) => {
   const [currentTab, setCurrentTab] = useState({
     url: '',
     title: '',
-    favicon: '',
   });
 
   useEffect(() => {
-    // chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-    //   console.log(tabs[0]);
-    //   if (tabs[0]) {
-    //     setCurrentTab({
-    //       url: tabs[0].url,
-    //       title: tabs[0].title,
-    //       favicon: tabs[0].favIconUrl ? tabs[0].favIconUrl : '',
-    //     });
-    //   }
-    // });
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+      console.log(tabs[0]);
+      if (tabs[0]) {
+        setCurrentTab({ url: tabs[0].url, title: tabs[0].title });
+      }
+    });
     checkFolderColorApi();
   }, []);
 
@@ -263,6 +259,7 @@ const Popup = (props) => {
               onChange={memoChange}
             />
           </div>
+          <LinkPreview url={currentTab.url} title={currentTab.title} />
           <div css={inputWrapper}>
             <TagInput
               color={memo.nextColor}
