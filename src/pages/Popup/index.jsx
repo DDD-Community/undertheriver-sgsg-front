@@ -25,15 +25,14 @@ function App() {
         <BrowserRouter history={history} basename="/popup.html#">
           <Switch>
             <Route exact path="/login" component={Login} />
-            <Route exact path="/after-login" component={AfterLogin} />
             <PrivateRoute
-              exact
               writePopup={writePopup}
               setWritePopup={setWritePopup}
               path="/"
               component={Popup}
             />
-            <Redirect path="*" to="/" />
+            <Route exact path="*" component={AfterLogin} />
+            {/*<Redirect path="*" to="/" />*/}
           </Switch>
         </BrowserRouter>
       )}

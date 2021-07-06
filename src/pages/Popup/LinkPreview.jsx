@@ -1,79 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import ReactLinkPreview from '@ashwamegh/react-link-preview';
-import rollLoading from '../../assets/img/loading.gif';
+import { Input } from '@chakra-ui/react';
 
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import LinkIcon from '../../assets/img/icon-link.svg';
+import removeLink from '../../assets/img/removeLink-btn.svg';
 
 const linkWrapper = css`
   padding: 0 1rem;
   margin-top: 1rem;
 
-  .linkBox {
+  .link-box {
     min-height: 52px;
     display: flex;
     align-items: center;
+  }
+
+  .link-input {
+    width: 17rem;
+    padding: 0.625rem 2.5rem 0.625rem 2.25rem;
     background-color: #f7f7f7;
-    border-radius: 2px;
-    padding: 0.625rem 1rem;
-  }
-  .linkBox.loading {
-    justify-content: center;
-  }
-
-  img {
-    width: 2rem;
-    height: 2rem;
-    margin-right: 10px;
-  }
-
-  .title {
-    font-size: 12px;
-    color: #636972;
-    width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .domain {
-    font-size: 10px;
+    background-image: url(${LinkIcon});
+    background-repeat: no-repeat;
+    background-position: 11px 10px;
     color: #a5aab2;
-    width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    border: none;
+
+    &::placeholder {
+      color: #858585;
+      opacity: 0.4;
+    }
+  }
+
+  .remove-btn {
+    position: relative;
+    left: -2rem;
+    cursor: pointer;
   }
 `;
 
-function LinkPreview(props) {
-  const [loadFlag, setLoadFlag] = useState(false);
+function LinkPreview({ url, thumbnailUrl, setThumbnailUrl }) {
   useEffect(() => {
-    if (props.url) {
-      setLoadFlag(true);
+    if (url) {
+      setThumbnailUrl(url);
     }
-    console.log(props.url);
-  }, [props]);
-  const CustomComponent = ({ loading, preview }) => {
-    return loading ? (
-      <div css={linkWrapper}>
-        <div className="linkBox loading">
-          <img src={rollLoading} />
-        </div>
+  }, [url]);
+
+  return (
+    <div css={linkWrapper}>
+      <div className="link-box">
+        <Input
+          className="link-input"
+          focusBorderColor="black"
+          placeholder="첨부할 링크를 입력하세요"
+          value={thumbnailUrl}
+          onChange={(e) => setThumbnailUrl(e.target.value)}
+        />
+        {thumbnailUrl !== '' && (
+          <img src={removeLink} className="remove-btn" onClick={() => setThumbnailUrl('')} />
+        )}
       </div>
-    ) : (
-      <div css={linkWrapper}>
-        <div className="linkBox">
-          <img height="32px" width="32px" src={preview.img} alt={preview.title} />
-          <div>
-            <h4 className="title">{props.title ? props.title : preview.title}</h4>
-            <h4 className="domain">{preview.domain}</h4>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  return loadFlag && props.url && <ReactLinkPreview url={props.url} render={CustomComponent} />;
+    </div>
+  );
 }
 
 export default LinkPreview;

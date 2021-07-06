@@ -14,9 +14,9 @@ const AfterLogin = () => {
           token = token.slice(0, token.length - 2);
         }
         localStorage.setItem('access_token', token);
-        history.push({ pathname: '/' });
-        // if (process.env.NODE_ENV === 'production') window.location.href = 'https://sgsg.space/';
-        // else window.location.href = 'http://localhost:3000/';
+        history.push({ pathname: '/popup' });
+        window.location.href =
+          'chrome-extension://mbaagcnmdjpechkaefcpcnbnmjbeddpc/popup.html#/popup';
       }
     } catch (e) {
       history.push('/login');

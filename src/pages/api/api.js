@@ -57,10 +57,10 @@ export function checkFolderColor() {
   });
 }
 
-export function checkFolder(userId) {
+export function checkFolder(orderBy) {
   return new Promise((resolve, reject) => {
     return baseApi(apiPrefix)
-      .get('/folders' + '/' + userId, getAccessTokenHeader())
+      .get('/folders' + '?' + 'orderBy=' + orderBy, getAccessTokenHeader())
       .then((response) => {
         successStatusCheck(response, resolve);
       })

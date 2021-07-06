@@ -24,7 +24,7 @@ function App() {
           <PrivateRoute exact path="/newtab" component={Newtab} />
           <PrivateRoute exact path="/setting" component={Setting} />
           <Route path="/error" component={NotFound} />
-          <Redirect path="*" to="/" /> *
+          <Redirect path="*" to="/" />
         </Switch>
       </BrowserRouter>
     </ChakraProvider>

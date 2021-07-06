@@ -105,14 +105,16 @@ const Popup = (props) => {
     url: '',
     title: '',
   });
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-      console.log(tabs[0]);
+      // console.log(tabs[0]);
       if (tabs[0]) {
         setCurrentTab({ url: tabs[0].url, title: tabs[0].title });
       }
     });
+    checkFolderApi();
     checkFolderColorApi();
   }, []);
 
@@ -164,6 +166,38 @@ const Popup = (props) => {
     return sound;
   };
 
+  const checkFolderApi = () => {
+    try {
+      setLoading(true);
+      Api.checkFolder('CREATED_AT')
+        .then((response) => {
+          setLoading(false);
+          if (response.status === 200) {
+            const data = response.data;
+            if (data.success) {
+              setMemo({
+                ...memo,
+                nextColor: data.response.nextColor,
+              });
+              localStorage.setItem('next_color', data.response.nextColor);
+            } else {
+              // setErrorPopup({ active: 'active', content: defaultMsg });
+            }
+          } else {
+            // setErrorPopup({ active: 'active', content: defaultMsg });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          // setErrorPopup({ active: 'active', content: defaultMsg });
+        });
+    } catch (e) {
+      setLoading(false);
+      // setErrorPopup({ active: 'active', content: defaultMsg });
+    }
+  };
+
   const checkFolderColorApi = () => {
     try {
       setLoading(true);
@@ -202,6 +236,7 @@ const Popup = (props) => {
         memoContent: memo.value,
         folderColor: memo.nextColor,
         folderTitle: selectKeyword[0],
+        thumbnailUrl: thumbnailUrl,
       };
       setLoading(true);
       Api.createMemo(obj)
@@ -259,7 +294,14 @@ const Popup = (props) => {
               onChange={memoChange}
             />
           </div>
-          <LinkPreview url={currentTab.url} title={currentTab.title} />
+          {currentTab.url !== '' && (
+            <LinkPreview
+              url={currentTab.url}
+              thumbnailUrl={thumbnailUrl}
+              setThumbnailUrl={setThumbnailUrl}
+              setCurrentTab={setCurrentTab}
+            />
+          )}
           <div css={inputWrapper}>
             <TagInput
               color={memo.nextColor}
