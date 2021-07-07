@@ -16,7 +16,7 @@ const AfterLogin = () => {
         localStorage.setItem('access_token', token);
         history.push({ pathname: '/popup' });
         window.location.href =
-          'chrome-extension://mbaagcnmdjpechkaefcpcnbnmjbeddpc/popup.html#/popup';
+          'chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/popup';
       }
     } catch (e) {
       history.push('/login');

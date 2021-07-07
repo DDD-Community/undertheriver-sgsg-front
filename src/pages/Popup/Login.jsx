@@ -61,7 +61,7 @@ const googleLoginWrapper = css`
 
 const Login = () => {
   const googleLogin = () => {
-    location.href = `https://api.sgsg.space/oauth2/authorization/google?redirect_uri=chrome-extension://mbaagcnmdjpechkaefcpcnbnmjbeddpc/popup.html#/after-login`;
+    location.href = `https://api.sgsg.space/oauth2/authorization/google?redirect_uri=chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/after-login`;
   };
 
   return (

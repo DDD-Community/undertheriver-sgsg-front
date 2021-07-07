@@ -106,6 +106,7 @@ const Popup = (props) => {
     title: '',
   });
   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [folderList, setFolderList] = useState([]);
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
@@ -147,7 +148,16 @@ const Popup = (props) => {
         setWrongFlag(true);
         return;
       }
-      writeMemoApi();
+
+      let findId = null;
+      if (folderList.length > 0) {
+        for (let i = 0; i < folderList.length; i++) {
+          if (selectKeyword[0] === folderList[i].title) {
+            findId = folderList[i].id;
+          }
+        }
+      }
+      writeMemoApi(findId);
       setSubmitFlag(true);
     }
     // chrome-extension popup close
@@ -175,11 +185,7 @@ const Popup = (props) => {
           if (response.status === 200) {
             const data = response.data;
             if (data.success) {
-              setMemo({
-                ...memo,
-                nextColor: data.response.nextColor,
-              });
-              localStorage.setItem('next_color', data.response.nextColor);
+              setFolderList(data.response);
             } else {
               // setErrorPopup({ active: 'active', content: defaultMsg });
             }
@@ -230,10 +236,11 @@ const Popup = (props) => {
     }
   };
 
-  const writeMemoApi = () => {
+  const writeMemoApi = (id) => {
     try {
       const obj = {
         memoContent: memo.value,
+        folderId: id ? id : null,
         folderColor: memo.nextColor,
         folderTitle: selectKeyword[0],
         thumbnailUrl: thumbnailUrl,
