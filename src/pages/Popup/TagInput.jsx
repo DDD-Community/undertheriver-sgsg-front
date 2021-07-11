@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input, Badge } from '@chakra-ui/react';
 
 /** @jsx jsx */
@@ -88,7 +88,12 @@ function TagInput(props) {
   const [keyword, setKeyword] = useState('');
   const [findFlag, setFindFlag] = useState(false);
   const [tagFlag, setTagFlag] = useState(false);
+  const [tagColor, setTagColor] = useState('');
   const [selectPosition, setSelectPosition] = useState(0);
+
+  useEffect(() => {
+    setTagColor(props.color);
+  }, [props.color]);
 
   // keyword input keypress event
   const handleKeyPress = (event) => {
@@ -97,6 +102,16 @@ function TagInput(props) {
         setFindFlag(true);
         setKeyword('');
       } else {
+        const list = props.folderList;
+        let color = props.color;
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            if (keyword === list[i].title) {
+              color = list[i].color;
+            }
+          }
+        }
+        setTagColor(color);
         props.setSelectKeyword([keyword]);
         setFindFlag(true);
         setKeyword('');
@@ -113,6 +128,16 @@ function TagInput(props) {
   // focus out keyword input
   const handleFocusOut = () => {
     if (keyword !== '' || keyword.length !== 0) {
+      const list = props.folderList;
+      let color = props.color;
+      if (list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+          if (keyword === list[i].title) {
+            color = list[i].color;
+          }
+        }
+      }
+      setTagColor(color);
       props.setSelectKeyword([keyword]);
       setFindFlag(true);
       setKeyword('');
@@ -146,7 +171,7 @@ function TagInput(props) {
       <Badge
         css={keywordTag}
         id="keyword-tag"
-        className={(findFlag ? 'active ' : '') + props.color}
+        className={(findFlag ? 'active ' : '') + tagColor}
         onClick={() => deleteTag()}
       >
         {props.selectKeyword[selectPosition]}

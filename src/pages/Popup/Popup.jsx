@@ -35,7 +35,7 @@ const textareaBox = css`
 const inputWrapper = css`
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem 1rem 1rem;
 `;
 
 const saveButton = css`
@@ -101,18 +101,19 @@ const Popup = (props) => {
   const [selectKeyword, setSelectKeyword] = useState([]);
   const [submitFlag, setSubmitFlag] = useState(false);
   const [wrongFlag, setWrongFlag] = useState(false);
+  const [linkFlag, setLinkFlag] = useState(true);
   const [currentTab, setCurrentTab] = useState({
     url: '',
     title: '',
+    favicon: '',
   });
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [folderList, setFolderList] = useState([]);
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-      // console.log(tabs[0]);
       if (tabs[0]) {
-        setCurrentTab({ url: tabs[0].url, title: tabs[0].title });
+        setCurrentTab({ url: tabs[0].url, title: tabs[0].title, favicon: tabs[0].favIconUrl });
       }
     });
     checkFolderApi();
@@ -133,8 +134,6 @@ const Popup = (props) => {
       event.target.rows = memo.maxRows;
       event.target.scrollTop = event.target.scrollHeight;
     }
-    //TODO URL contents Check
-
     setMemo({
       ...memo,
       value: event.target.value,
@@ -243,7 +242,9 @@ const Popup = (props) => {
         folderId: id ? id : null,
         folderColor: memo.nextColor,
         folderTitle: selectKeyword[0],
-        thumbnailUrl: thumbnailUrl,
+        thumbnailUrl: linkFlag ? currentTab.url : '',
+        thumbnailTitle: linkFlag ? currentTab.title : '',
+        thumbnailFavicon: linkFlag ? currentTab.favicon : '',
       };
       setLoading(true);
       Api.createMemo(obj)
@@ -301,17 +302,19 @@ const Popup = (props) => {
               onChange={memoChange}
             />
           </div>
-          {currentTab.url !== '' && (
+          {currentTab.url !== '' && linkFlag && (
             <LinkPreview
-              url={currentTab.url}
+              setLinkFlag={setLinkFlag}
               thumbnailUrl={thumbnailUrl}
               setThumbnailUrl={setThumbnailUrl}
+              currentTab={currentTab}
               setCurrentTab={setCurrentTab}
             />
           )}
           <div css={inputWrapper}>
             <TagInput
               color={memo.nextColor}
+              folderList={folderList}
               wrongFlag={wrongFlag}
               setWrongFlag={setWrongFlag}
               selectKeyword={selectKeyword}
