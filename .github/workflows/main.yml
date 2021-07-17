@@ -52,19 +52,6 @@ jobs:
       - name: 패키지 빌드
         run: npm run build
 
-      - name: aws 세팅
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws-region: ap-northeast-2
-
-      - name: S3 업로드
-        run: aws deploy push --application-name undertheriver-sgsg --s3-location s3://sgsg-deploy/frontend/build.zip --source .
-
-      - name: code deploy
-        run: aws deploy create-deployment --application-name undertheriver-sgsg --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name frontend --s3-location bucket=sgsg-deploy,bundleType=zip,key=frontend/build.zip
-
   lint:
     runs-on: ubuntu-18.04
     name: ESLint
