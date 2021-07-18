@@ -60,8 +60,31 @@ const googleLoginWrapper = css`
 `;
 
 const Login = () => {
+  useEffect(() => {
+    if (localStorage.getItem('access_token')) {
+      history.push('/popup');
+      return;
+    }
+    window.addEventListener('message', getToken, false);
+    return () => {
+      window.removeEventListener('message', getToken, false);
+    };
+  }, []);
+
+  const getToken = (data) => {
+    if (data.data === 'success') {
+      setTimeout(() => {
+        history.push('/popup');
+      }, 1000);
+    }
+  };
+
   const googleLogin = () => {
-    location.href = `https://api.sgsg.space/oauth2/authorization/google?redirect_uri=chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/after-login`;
+    window.open(
+      'https://api.sgsg.space/oauth2/authorization/google?redirect_uri=chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/after-login',
+      'childWin',
+      'width=400, height=280, toolbar=no, menubar=no, scrollbars=no, resizable=yes',
+    );
   };
 
   return (

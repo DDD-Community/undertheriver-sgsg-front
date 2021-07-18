@@ -24,7 +24,7 @@ function App() {
       {writePopup.flag && (
         <BrowserRouter history={history} basename="/popup.html#">
           <Switch>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Login} />
             <Route exact path="/after-login" component={AfterLogin} />
             <PrivateRoute
               writePopup={writePopup}

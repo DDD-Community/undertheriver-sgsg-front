@@ -14,9 +14,11 @@ const AfterLogin = () => {
           token = token.slice(0, token.length - 2);
         }
         localStorage.setItem('access_token', token);
-        history.push({ pathname: '/popup' });
-        window.location.href =
-          'chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/popup';
+        window.opener.postMessage('success');
+
+        setTimeout(function () {
+          window.close();
+        }, 1000);
       }
     } catch (e) {
       history.push('/login');

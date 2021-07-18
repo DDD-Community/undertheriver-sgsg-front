@@ -19,7 +19,7 @@ function PrivateRoute({
             <Component {...props} writePopup={writePopup} setWritePopup={setWritePopup} />
           )
         ) : (
-          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
         )
       }
     />
