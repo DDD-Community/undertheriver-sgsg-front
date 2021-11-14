@@ -75,10 +75,10 @@ const subTextWrapper = css`
 
 const Login = () => {
   useEffect(() => {
-    chrome.tabs.update({ url: 'https://sgsg.space' });
+    chrome.tabs.update({ url: 'https://sgsg.name' });
   }, []);
   // const googleLogin = () => {
-  //   location.href = `http://api.sgsg.space/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
+  //   location.href = `http://api.sgsg.name/oauth2/authorization/google?redirect_uri=${REACT_APP_LOGIN_URL}`;
   // };
 
   return (

@@ -12,8 +12,8 @@
   },
   "permissions": [
     "tabs",
-    "*://sgsg.space/*",
-    "*://api.sgsg.space/*"
+    "*://sgsg.name/*",
+    "*://api.sgsg.name/*"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"

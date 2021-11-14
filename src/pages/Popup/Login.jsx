@@ -81,7 +81,7 @@ const Login = () => {
 
   const googleLogin = () => {
     window.open(
-      'https://api.sgsg.space/oauth2/authorization/google?redirect_uri=chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/after-login',
+      'https://api.sgsg.name/oauth2/authorization/google?redirect_uri=chrome-extension://cbcfldfiodebkafgjhiokikamikajekn/popup.html#/after-login',
       'childWin',
       'width=400, height=280, toolbar=no, menubar=no, scrollbars=no, resizable=yes',
     );
@@ -102,7 +102,7 @@ const Login = () => {
       <section css={loginWrapper}>
         <div className="login-box">
           <div className="main-logo">
-            <a href="https://sgsg.space" target="_blank">
+            <a href="https://sgsg.name" target="_blank">
               <figure>
                 <img src={MainLogo} className="main-logo" alt="A logo for sagaksagak website" />
               </figure>

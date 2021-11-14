@@ -3,7 +3,7 @@ import { createHashHistory } from 'history';
 
 const history = createHashHistory();
 
-const apiPrefix = 'https://api.sgsg.space/v1';
+const apiPrefix = 'https://api.sgsg.name/v1';
 
 function baseApi(apiUrl) {
   return axios.create({

@@ -329,7 +329,7 @@ const Popup = (props) => {
         <div css={completeWrapper}>
           <h2>사각사각에 저장되었어요!</h2>
           <img src={MemoComplete} alt="Memo Save Complete" />
-          <a href="https://sgsg.space" target="_blank">
+          <a href="https://sgsg.name" target="_blank">
             사각사각으로 이동하기
           </a>
         </div>
